@@ -1,0 +1,58 @@
+<h2><a href="/">Home</a></h2>
+{% block title %}Create New Employee{% endblock %}
+{% block content %}
+  <div class="form-wrapper">
+    <form method="post" class="form" action="/employee/create" enctype=multipart/form-data>
+        <br>
+      <div class="form-group">
+        <label for="name">Name</label>
+        {{ form.name(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="name">Email</label>
+        {{ form.email(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="name">Dept Name</label>
+        {{ form.dept_name(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="name">Basic Salary</label>
+        {{ form.basic_salary(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="name">First Allowance</label>
+        {{ form.first_allowance(class_ = 'form-control', autofocus = true) }} %
+      </div>
+      <div class="form-group">
+        <label for="name">Second Allowance</label>
+        {{ form.second_allowance(class_ = 'form-control', autofocus = true) }} %
+      </div>
+      <div class="form-group">
+        <label for="name">Attach CV</label>
+        {{ form.attach_cv(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="name">Employee Picture</label>
+        {{ form.emp_pic(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="name">Hiring Date</label>
+        {{ form.hiring_date(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <br>
+      <input type="submit" value="Create Employee" class="btn btn-primary btn-lg btn-block">
+    </form>
+  </div>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div style="color:red;">
+      <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    <ul>
+    </div>
+  {% endif %}
+{% endwith %}
+{% endblock %}

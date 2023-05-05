@@ -1,0 +1,68 @@
+<h2><a href="/">Home</a></h2>
+{% block title %}Employees Report{% endblock %}
+{% block content %}
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+<div class="form-wrapper">
+    <form method="post" class="form" action="/report">
+        <br>
+        <div class="form-group">
+            <label for="name">Filter</label>
+            {{ form.searchfilter(class_ = 'form-control', autofocus = true) }}
+
+            <label for="name">Search</label>
+            {{ form.search(class_ = 'form-control', autofocus = true) }}
+            <input type="submit" value="Search" class="btn btn-primary btn-lg btn-block">
+        </div>
+    </form>
+</div>
+<table>
+    <tbody>
+        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Employee Email</th>
+            <th>Basic Salary</th>
+            <th>First Allowance</th>
+            <th>Second Allowance</th>
+            <th>Total Salary</th>
+            <th>Company</th>
+            <th>Department</th>
+            <th>Attached CV</th>
+            <th>Employee Picture</th>
+            <th>Hiring Date</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.basic_salary }} SAR</td>
+            <td>{{ employee.first_allowance }} %</td>
+            <td>{{ employee.second_allowance }} %</td>
+            <td>{{ employee.total_salary}}</td>
+            <td>{{ employee.department.companydepartment.name }}</td>
+            <td>{{ employee.department.name }}</td>
+            <td>
+                {%if employee.attach_cv != None %}
+                <a href="../../static/cv/{{employee.attach_cv}}">{{ employee.attach_cv }}</a>
+                {%endif%}
+            </td>
+            <td>
+                {%if employee.emp_pic != None %}
+                <a href="../../static/pic/{{employee.emp_pic}}">{{ employee.emp_pic }}</a>
+                {%endif%}
+            </td>
+
+            <td>{{ employee.hiring_date.strftime('%d/%m/%Y')}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

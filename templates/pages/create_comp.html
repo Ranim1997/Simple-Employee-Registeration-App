@@ -1,0 +1,22 @@
+<h2><a href="/">Home</a></h2>
+{% block title %}Create Company{% endblock %}
+{% block content %}
+  <div class="form-wrapper">
+    <form method="post" class="form" action="/company/create">
+        <br>
+      <div class="form-group">
+        <label for="name">Name</label>
+        {{ form.name(class_ = 'form-control', autofocus = true) }}
+      </div>
+      <br>
+      <input type="submit" value="Create Company" class="btn btn-primary btn-lg btn-block">
+    </form>
+    <br>
+    <br>
+    <ol>
+    {% for company in companies %}
+			<li>{{ company.name }}</li>
+			{% endfor %}
+    </ol>
+  </div>
+{% endblock %}
